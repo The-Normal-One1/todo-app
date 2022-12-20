@@ -2,26 +2,17 @@ import React, { useState, useEffect } from 'react';
 import styles from './TodoItem.module.css';
 
 function TodoItem(props) {
-  // state = {
-  //   editing: false,
-  // };
-  const [editing, setEdting] = useState('false');
+  const [editing, setEditing] = useState(false);
 
   const handleEditing = () => {
-    // console.log('Edit mode is activated');
-    setEdting(true);
+    setEditing(true);
   };
 
   const handleUpdateDone = (event) => {
-    // console.log(event.key);
     if (event.key === 'Enter') {
-      setEdting(false);
+      setEditing(false);
     }
   };
-
-  useEffect(() => {
-    console.log('Cleaning up---');
-  });
 
   const completedStyle = {
     fontStyle: 'italic',
@@ -41,6 +32,10 @@ function TodoItem(props) {
     editMode.display = 'none';
   }
 
+  useEffect(() => {
+    console.log('Cleaning up---');
+  }, []);
+
   return (
     <li className={styles.item}>
       <div onDoubleClick={handleEditing} style={viewMode}>
@@ -59,8 +54,7 @@ function TodoItem(props) {
         style={editMode}
         value={title}
         onChange={(e) => {
-          // console.log(e.target.value, id);
-          this.props.setUpdateOpt(e.target.value, id);
+          props.setUpdateOpt(e.target.value, id);
         }}
         onKeyDown={handleUpdateDone}
       />
