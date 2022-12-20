@@ -9,7 +9,7 @@ const TodoContainer = () => {
 
   const handleChange = (id) => {
     setTodos((prevState) =>
-      prevState.todos.map((todo) => {
+      prevState.map((todo) => {
         if (todo.id === id) {
           return {
             ...todo,
