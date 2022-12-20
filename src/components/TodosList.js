@@ -12,6 +12,7 @@ class TodosList extends Component {
               list={todo}
               handler={this.props.handleChangeProps}
               deleteBtn={this.props.delTodoProps}
+              setUpdateOpt={this.props.setUpdateProps}
             />
           ))}
         </ul>
