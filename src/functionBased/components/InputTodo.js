@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 
 function InputTodo(props) {
-  const [title, setTitle] = useState('');
+  const [inputText, setInputText] = useState({
+    title: '',
+  });
 
   const onChangeInp = (e) => {
-    setTitle(e.target.value);
+    setInputText({
+      ...inputText,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmitInp = (e) => {
     e.preventDefault();
-    if (title.trim()) {
-      props.addTodoItemProps(title);
-      setTitle('');
+    if (inputText.title.trim()) {
+      props.addTodoItemProps(inputText.title);
+      setInputText({
+        title: '',
+      });
     } else {
       alert('Please write item');
     }
@@ -23,7 +30,7 @@ function InputTodo(props) {
         className="input-text"
         type="text"
         placeholder="Meeting with the family"
-        value={title}
+        value={inputText.title}
         name="title"
         onChange={onChangeInp}
         required
