@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodosList from './TodosList';
 import Header from './Header';
 import InputTodo from './InputTodo';
 import { v4 as uuidv4 } from 'uuid';
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(getInitialTodos());
 
   const handleChange = (id) => {
     setTodos((prevState) =>
@@ -50,28 +50,16 @@ const TodoContainer = () => {
     );
   };
 
-  // componentDidMount() {
-  //   fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
-  //     .then((response) => response.json())
-  //     .then((data) => this.setState({ todos: data }));
-  // }
+  function getInitialTodos() {
+    const lists = localStorage.getItem('todos');
+    const loadTodos = JSON.parse(lists);
+    return loadTodos || [];
+  }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.todos !== this.state.todos) {
-  //     const temp = JSON.stringify(this.state.todos);
-  //     localStorage.setItem('todos', temp);
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   const lists = localStorage.getItem('todos');
-  //   const loadTodos = JSON.parse(lists);
-  //   if (loadTodos) {
-  //     this.setState({
-  //       todos: loadTodos,
-  //     });
-  //   }
-  // }
+  useEffect(() => {
+    const temp = JSON.stringify(todos);
+    localStorage.setItem('todos', temp);
+  }, [todos]);
 
   return (
     <div className="container">
