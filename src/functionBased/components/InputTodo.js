@@ -1,48 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class InputTodo extends Component {
-  state = {
-    title: '',
+function InputTodo(props) {
+  const [title, setTitle] = useState('');
+
+  const onChangeInp = (e) => {
+    setTitle(e.target.value);
   };
 
-  onChangeInp = (e) => {
-    // console.log('ERMIYAS D.');
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  handleSubmitInp = (e) => {
+  const handleSubmitInp = (e) => {
     e.preventDefault();
-    // console.log(this.state.title);
-    if (this.state.title.trim()) {
-      this.props.addTodoItemProps(this.state.title);
-      this.setState({
-        title: '',
-      });
+    if (title.trim()) {
+      props.addTodoItemProps(title);
+      setTitle('');
     } else {
-      alert('Please write itme');
+      alert('Please write item');
     }
   };
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmitInp} className="form-container">
-        <input
-          className="input-text"
-          type="text"
-          placeholder="Meeting with the family"
-          value={this.state.title}
-          name="title"
-          onChange={this.onChangeInp}
-          required
-        />
-        <button className="input-submit" type="submit">
-          Submit
-        </button>
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={handleSubmitInp} className="form-container">
+      <input
+        className="input-text"
+        type="text"
+        placeholder="Meeting with the family"
+        value={title}
+        name="title"
+        onChange={onChangeInp}
+        required
+      />
+      <button className="input-submit" type="submit">
+        Submit
+      </button>
+    </form>
+  );
 }
-
 export default InputTodo;
