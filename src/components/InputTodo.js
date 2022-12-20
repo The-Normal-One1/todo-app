@@ -14,14 +14,22 @@ class InputTodo extends Component {
 
   handleSubmitInp = (e) => {
     e.preventDefault();
-    console.log(this.state.title);
+    // console.log(this.state.title);
+    if (this.state.title.trim()) {
+      this.props.addTodoItemProps(this.state.title);
+      this.setState({
+        title: '',
+      });
+    } else {
+      alert('Please write itme');
+    }
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmitInp}>
-        <h2>Add Todo Lists</h2>
+      <form onSubmit={this.handleSubmitInp} className="form-container">
         <input
+          className="input-text"
           type="text"
           placeholder="Meeting with the family"
           value={this.state.title}
@@ -29,7 +37,9 @@ class InputTodo extends Component {
           onChange={this.onChangeInp}
           required
         />
-        <button type="submit">Submit</button>
+        <button className="input-submit" type="submit">
+          Submit
+        </button>
       </form>
     );
   }
