@@ -31,8 +31,5 @@
   background: transparent;
   border: none;
   border-bottom: 1px solid #eaeaea;
-}
-
-.textInput:active {
-  border: none;
+  height: 45px;
 }
