@@ -5,6 +5,7 @@ class TodoItem extends Component {
   state = {
     editing: false,
   };
+
   handleEditing = () => {
     // console.log('Edit mode is activated');
     this.setState({
@@ -33,8 +34,8 @@ class TodoItem extends Component {
 
     const { id, title, completed } = this.props.list;
 
-    let viewMode = {};
-    let editMode = {};
+    const viewMode = {};
+    const editMode = {};
 
     if (this.state.editing) {
       viewMode.display = 'none';
@@ -52,7 +53,10 @@ class TodoItem extends Component {
             onChange={() => this.props.handler(id)}
           />
           <button onClick={() => this.props.deleteBtn(id)}>Delete</button>
-          <span style={completed ? completedStyle : null}>{title} </span>
+          <span style={completed ? completedStyle : null}>
+            {title}
+            {' '}
+          </span>
         </div>
         <input
           type="text"

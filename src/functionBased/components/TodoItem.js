@@ -24,8 +24,8 @@ function TodoItem(props) {
 
   const { id, title, completed } = props.list;
 
-  let viewMode = {};
-  let editMode = {};
+  const viewMode = {};
+  const editMode = {};
 
   if (editing) {
     viewMode.display = 'none';
@@ -49,7 +49,10 @@ function TodoItem(props) {
         <button onClick={() => props.deleteBtn(id)}>
           <FaTrash style={{ color: 'orangered', fontSize: '26px' }} />
         </button>
-        <span style={completed ? completedStyle : null}>{title} </span>
+        <span style={completed ? completedStyle : null}>
+          {title}
+          {' '}
+        </span>
       </div>
       <input
         type="text"

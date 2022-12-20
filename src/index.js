@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import TodoContainer from './functionBased/components/TodoContainer';
 import { BrowserRouter } from 'react-router-dom';
+import TodoContainer from './functionBased/components/TodoContainer';
 // stylesheet
 import './functionBased/index.css';
 
@@ -11,5 +11,5 @@ value.render(
     <BrowserRouter>
       <TodoContainer />
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
